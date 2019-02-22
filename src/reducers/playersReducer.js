@@ -1,4 +1,8 @@
-import { ADD_PLAYER, LOAD_INITIAL_PLAYERS } from "../actions/playerActions";
+import {
+  ADD_PLAYER,
+  LOAD_INITIAL_PLAYERS,
+  REMOVE_PLAYER
+} from "../actions/playerActions";
 
 const initialState = {};
 
@@ -16,6 +20,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         allPlayers: [...state.allPlayers, action.payload]
+      };
+    }
+    case REMOVE_PLAYER: {
+      console.log("reducer remove player", state.allPlayers);
+      state.allPlayers.splice(action.payload, 1);
+      console.log("after splice", state.allPlayers);
+      return {
+        ...state,
+        allPlayers: state.allPlayers
       };
     }
     default:
