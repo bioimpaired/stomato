@@ -1,35 +1,27 @@
-import {
-  LOAD_INITIAL_FORM_STATE
-  //   LOAD_INITIAL_PLAYERS,
-  //   REMOVE_PLAYER,
-  //   TOGGLE_PLAYER_MODAL
-} from "../actions/modalActions";
+import { SHOW_MODAL, HIDE_MODAL } from "../actions/modalActions";
 
 const initialState = {
-  initialFormState: {
-    name: "",
-    fg: "",
-    ft: "",
-    threes: "",
-    pts: "",
-    reb: "",
-    ast: "",
-    st: "",
-    blk: "",
-    to: ""
-  }
+  modalType: null,
+  modalProps: {},
+  isOpen: false
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_INITIAL_FORM_STATE: {
-      console.log("load inital form state", action.payload);
-      if (!action.payload) {
-        return state;
-      }
+    case SHOW_MODAL: {
+      console.log("modal reducer showmodal", action.payload);
       return {
         ...state,
-        initialFormState: action.payload
+        modalType: action.modalType,
+        modalProps: action.modalProps,
+        isOpen: true
+      };
+    }
+    case HIDE_MODAL: {
+      console.log("modal reducer hidemodal");
+      return {
+        ...state,
+        ...initialState
       };
     }
     default:

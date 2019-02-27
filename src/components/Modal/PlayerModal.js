@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { addPlayer, togglePlayerModal } from "../../actions/playerActions";
+import { addPlayer } from "../../actions/playerActions";
+import { hideModal } from "../../actions/modalActions";
 
 import { connect } from "react-redux";
 
@@ -13,14 +14,8 @@ import {
 } from "reactstrap";
 
 import InputLine from "./InputLine";
-import { loadInitialFormState } from "../../actions/modalActions";
 
-const PlayerModal = ({
-  isOpen,
-  addPlayer,
-  togglePlayerModal,
-  loadInitialFormState
-}) => {
+const PlayerModal = ({ isOpen, addPlayer, hideModal }) => {
   //should be in redux
   const initialFormState = {
     name: "",
@@ -47,12 +42,18 @@ const PlayerModal = ({
     e.preventDefault();
     addPlayer(formState);
     setFormState(initialFormState);
-    togglePlayerModal();
+    hideModal();
+  };
+
+  const closeAndResetModal = e => {
+    e.preventDefault();
+    console.log("hiding modal");
+    hideModal();
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={togglePlayerModal}>
-      <ModalHeader toggle={togglePlayerModal}>Add Player</ModalHeader>
+    <Modal isOpen={isOpen} toggle={closeAndResetModal}>
+      <ModalHeader toggle={closeAndResetModal}>Add Player</ModalHeader>
       <ModalBody>
         <Form>
           {allCats.map((cat, index) => (
@@ -69,7 +70,7 @@ const PlayerModal = ({
         <Button color="primary" onClick={handleAddPlayer}>
           Add Player
         </Button>
-        <Button color="secondary" onClick={togglePlayerModal}>
+        <Button color="secondary" onClick={closeAndResetModal}>
           Cancel
         </Button>
       </ModalFooter>
@@ -79,12 +80,10 @@ const PlayerModal = ({
 
 export default connect(
   state => ({
-    isOpen: state.players.playerModalOpen
+    isOpen: state.modal.isOpen
   }),
   dispatch => ({
     addPlayer: formState => dispatch(addPlayer(formState)),
-    togglePlayerModal: () => dispatch(togglePlayerModal()),
-    loadInitialFormState: playerIndex =>
-      dispatch(loadInitialFormState(playerIndex))
+    hideModal: () => dispatch(hideModal())
   })
 )(PlayerModal);

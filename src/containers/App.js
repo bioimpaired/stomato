@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 import MatchUp from "../components/MatchUp";
 import { Layout } from "./Layout";
@@ -8,8 +7,7 @@ import { Layout } from "./Layout";
 import {
   addPlayer,
   loadInitialPlayers,
-  removePlayer,
-  togglePlayerModal
+  removePlayer
 } from "../actions/playerActions";
 
 import faker from "faker";
@@ -51,19 +49,13 @@ class App extends Component {
 
   render() {
     console.log("props", this.props);
-    const {
-      mainState,
-      addPlayer,
-      removePlayer,
-      togglePlayerModal
-    } = this.props;
+    const { mainState, addPlayer, removePlayer } = this.props;
     return (
       <Layout>
         <MatchUp
           allPlayers={mainState.allPlayers}
           addPlayer={addPlayer}
           removePlayer={removePlayer}
-          togglePlayerModal={togglePlayerModal}
         />
       </Layout>
     );
@@ -81,7 +73,6 @@ export default connect(
   dispatch => ({
     addPlayer: formState => dispatch(addPlayer(formState)),
     loadInitialPlayers: allPlayers => dispatch(loadInitialPlayers(allPlayers)),
-    removePlayer: index => dispatch(removePlayer(index)),
-    togglePlayerModal: () => dispatch(togglePlayerModal())
+    removePlayer: index => dispatch(removePlayer(index))
   })
 )(App);

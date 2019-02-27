@@ -9,7 +9,7 @@ import {
   NavLink
 } from "reactstrap";
 
-export class Layout extends React.Component {
+export class Layout extends Component {
   render() {
     const { children } = this.props;
     return (

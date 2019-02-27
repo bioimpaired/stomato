@@ -1,9 +1,19 @@
-export const LOAD_INITIAL_FORM_STATE = "LOAD_INITIAL_FORM_STATE";
+export const SHOW_MODAL = "SHOW_MODAL";
+export const HIDE_MODAL = "HIDE_MODAL";
+export const ADD_PLAYER_MODAL_TYPE = "ADD_PLAYER_MODAL_TYPE";
 
-export const loadInitialFormState = playerIndex => {
-  console.log("action load initial form state", playerIndex);
+export const showModal = (modalType, modalProps) => {
+  console.log("action showModal", modalType, modalProps);
   return {
-    type: LOAD_INITIAL_FORM_STATE,
-    payload: playerIndex
+    type: SHOW_MODAL,
+    modalType: modalType,
+    modalProps: modalProps
+  };
+};
+
+export const hideModal = () => {
+  console.log("actions hidemodal");
+  return {
+    type: HIDE_MODAL
   };
 };

@@ -1,20 +1,22 @@
-import React, { Component, useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 
-import { Container, Row, Col, Button } from "reactstrap";
+import { showModal, SHOW_MODAL } from "../actions/modalActions";
+
+import { Row, Col, Button } from "reactstrap";
 
 import PlayerStatLine from "./PlayerStatLine";
 import PlayerModal from "./Modal/PlayerModal";
 
-const MatchUp = ({ allPlayers, removePlayer, togglePlayerModal }) => {
+const MatchUp = ({ allPlayers, removePlayer, showModal }) => {
   const handleUpdatePlayerStatLine = (e, playerIndex) => {
     e.preventDefault();
-    togglePlayerModal();
   };
 
   const handleAddNewPlayerStatLine = e => {
     e.preventDefault();
     console.log("toggling");
-    togglePlayerModal();
+    showModal(SHOW_MODAL, {});
   };
 
   return (
@@ -56,4 +58,13 @@ const MatchUp = ({ allPlayers, removePlayer, togglePlayerModal }) => {
   );
 };
 
-export default MatchUp;
+export default connect(
+  // state => ({
+  //   stateHere: state
+  // })
+  null,
+  dispatch => ({
+    showModal: (modalType, modalProps) =>
+      dispatch(showModal(modalType, modalProps))
+  })
+)(MatchUp);
