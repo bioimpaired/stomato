@@ -8,7 +8,7 @@ import { Row, Col, Button } from "reactstrap";
 import PlayerStatLine from "./PlayerStatLine";
 import PlayerModal from "./Modal/PlayerModal";
 
-const MatchUp = ({ allPlayers, removePlayer, showModal }) => {
+const MatchUp = ({ allPlayers, removePlayer, showModal, stateHere }) => {
   const handleUpdatePlayerStatLine = (e, playerIndex) => {
     e.preventDefault();
   };
@@ -18,6 +18,8 @@ const MatchUp = ({ allPlayers, removePlayer, showModal }) => {
     console.log("toggling");
     showModal("addplayertype", {});
   };
+
+  console.log("matchup", stateHere);
 
   return (
     <div>
@@ -59,10 +61,10 @@ const MatchUp = ({ allPlayers, removePlayer, showModal }) => {
 };
 
 export default connect(
-  // state => ({
-  //   stateHere: state
-  // })
-  null,
+  state => ({
+    allPlayers: state.players.allPlayers,
+    stateHere: state
+  }),
   dispatch => ({
     showModal: (modalType, modalProps) =>
       dispatch(showModal(modalType, modalProps))

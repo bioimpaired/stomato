@@ -11,7 +11,6 @@ export default (state = initialState, action) => {
     case SHOW_MODAL: {
       console.log("modal reducer showmodal", action);
       return {
-        ...state,
         modalType: action.modalType,
         modalProps: action.modalProps,
         isOpen: true
@@ -19,9 +18,7 @@ export default (state = initialState, action) => {
     }
     case HIDE_MODAL: {
       console.log("modal reducer hidemodal");
-      return {
-        ...initialState
-      };
+      return initialState;
     }
     default:
       return state;

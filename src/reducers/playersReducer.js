@@ -11,13 +11,9 @@ const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SHOW_MODAL: {
-      console.log("hit palyer reducer");
-    }
     case LOAD_INITIAL_PLAYERS: {
       console.log("reducer initial reduce", action.payload);
       return {
-        ...state,
         allPlayers: action.payload
       };
     }
@@ -39,6 +35,6 @@ export default (state = initialState, action) => {
     }
     default:
       console.log("reducer default");
-      return initialState;
+      return state;
   }
 };

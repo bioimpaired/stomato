@@ -52,7 +52,7 @@ class App extends Component {
     return (
       <Layout>
         <MatchUp
-          allPlayers={mainState.allPlayers}
+          // allPlayers={mainState.allPlayers}
           addPlayer={addPlayer}
           removePlayer={removePlayer}
         />
@@ -65,7 +65,6 @@ export default connect(
   state => ({
     mainState: {
       allPlayers: state.players.allPlayers,
-      playerModalOpen: state.players.playerModalOpen,
       stateHere: state
     }
   }),
