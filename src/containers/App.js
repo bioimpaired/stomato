@@ -8,7 +8,8 @@ import { Layout } from "./Layout";
 import {
   addPlayer,
   loadInitialPlayers,
-  removePlayer
+  removePlayer,
+  togglePlayerModal
 } from "../actions/playerActions";
 
 import faker from "faker";
@@ -50,13 +51,19 @@ class App extends Component {
 
   render() {
     console.log("props", this.props);
-    const { mainState, addPlayer, removePlayer } = this.props;
+    const {
+      mainState,
+      addPlayer,
+      removePlayer,
+      togglePlayerModal
+    } = this.props;
     return (
       <Layout>
         <MatchUp
           allPlayers={mainState.allPlayers}
           addPlayer={addPlayer}
           removePlayer={removePlayer}
+          togglePlayerModal={togglePlayerModal}
         />
       </Layout>
     );
@@ -65,11 +72,16 @@ class App extends Component {
 
 export default connect(
   state => ({
-    mainState: { allPlayers: state.players.allPlayers }
+    mainState: {
+      allPlayers: state.players.allPlayers,
+      playerModalOpen: state.players.playerModalOpen,
+      stateHere: state
+    }
   }),
   dispatch => ({
     addPlayer: formState => dispatch(addPlayer(formState)),
     loadInitialPlayers: allPlayers => dispatch(loadInitialPlayers(allPlayers)),
-    removePlayer: index => dispatch(removePlayer(index))
+    removePlayer: index => dispatch(removePlayer(index)),
+    togglePlayerModal: () => dispatch(togglePlayerModal())
   })
 )(App);

@@ -1,10 +1,12 @@
 import {
   ADD_PLAYER,
   LOAD_INITIAL_PLAYERS,
-  REMOVE_PLAYER
+  REMOVE_PLAYER,
+  TOGGLE_PLAYER_MODAL
 } from "../actions/playerActions";
 
-const initialState = {};
+// modal should be in another reducer
+const initialState = { playerModalOpen: false };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -29,6 +31,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         allPlayers: state.allPlayers
+      };
+    }
+    case TOGGLE_PLAYER_MODAL: {
+      console.log("reducer toggle player modal", state.playerModalOpen);
+      return {
+        ...state,
+        playerModalOpen: !state.playerModalOpen
       };
     }
     default:

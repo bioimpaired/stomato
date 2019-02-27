@@ -5,16 +5,16 @@ import { Container, Row, Col, Button } from "reactstrap";
 import PlayerStatLine from "./PlayerStatLine";
 import PlayerModal from "./Modal/PlayerModal";
 
-const MatchUp = ({ allPlayers, addPlayer, removePlayer }) => {
-  const [isOpen, toggleModal] = useState(false);
-
-  const handleToggleModal = () => {
-    toggleModal(!isOpen);
+const MatchUp = ({ allPlayers, removePlayer, togglePlayerModal }) => {
+  const handleUpdatePlayerStatLine = (e, playerIndex) => {
+    e.preventDefault();
+    togglePlayerModal();
   };
 
   const handleAddNewPlayerStatLine = e => {
     e.preventDefault();
-    handleToggleModal();
+    console.log("toggling");
+    togglePlayerModal();
   };
 
   return (
@@ -47,15 +47,11 @@ const MatchUp = ({ allPlayers, addPlayer, removePlayer }) => {
               removePlayer={removePlayer}
               index={index}
               key={index}
-              handleToggleModal={handleToggleModal}
+              handleUpdatePlayerStatLine={handleUpdatePlayerStatLine}
             />
           );
         })}
-      <PlayerModal
-        isOpen={isOpen}
-        handleToggleModal={handleToggleModal}
-        addPlayer={addPlayer}
-      />
+      <PlayerModal />
     </div>
   );
 };

@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { addPlayer, togglePlayerModal } from "../../actions/playerActions";
+
+import { connect } from "react-redux";
+
 import {
   Button,
   Modal,
@@ -9,8 +13,15 @@ import {
 } from "reactstrap";
 
 import InputLine from "./InputLine";
+import { loadInitialFormState } from "../../actions/modalActions";
 
-const PlayerModal = ({ isOpen, handleToggleModal, addPlayer }) => {
+const PlayerModal = ({
+  isOpen,
+  addPlayer,
+  togglePlayerModal,
+  loadInitialFormState
+}) => {
+  //should be in redux
   const initialFormState = {
     name: "",
     fg: "",
@@ -36,12 +47,12 @@ const PlayerModal = ({ isOpen, handleToggleModal, addPlayer }) => {
     e.preventDefault();
     addPlayer(formState);
     setFormState(initialFormState);
-    handleToggleModal();
+    togglePlayerModal();
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={handleToggleModal}>
-      <ModalHeader toggle={handleToggleModal}>Add Player</ModalHeader>
+    <Modal isOpen={isOpen} toggle={togglePlayerModal}>
+      <ModalHeader toggle={togglePlayerModal}>Add Player</ModalHeader>
       <ModalBody>
         <Form>
           {allCats.map((cat, index) => (
@@ -58,7 +69,7 @@ const PlayerModal = ({ isOpen, handleToggleModal, addPlayer }) => {
         <Button color="primary" onClick={handleAddPlayer}>
           Add Player
         </Button>
-        <Button color="secondary" onClick={handleToggleModal}>
+        <Button color="secondary" onClick={togglePlayerModal}>
           Cancel
         </Button>
       </ModalFooter>
@@ -66,4 +77,14 @@ const PlayerModal = ({ isOpen, handleToggleModal, addPlayer }) => {
   );
 };
 
-export default PlayerModal;
+export default connect(
+  state => ({
+    isOpen: state.players.playerModalOpen
+  }),
+  dispatch => ({
+    addPlayer: formState => dispatch(addPlayer(formState)),
+    togglePlayerModal: () => dispatch(togglePlayerModal()),
+    loadInitialFormState: playerIndex =>
+      dispatch(loadInitialFormState(playerIndex))
+  })
+)(PlayerModal);
