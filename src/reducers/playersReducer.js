@@ -4,11 +4,16 @@ import {
   REMOVE_PLAYER
 } from "../actions/playerActions";
 
+import { SHOW_MODAL, HIDE_MODAL } from "../actions/modalActions";
+
 // modal should be in another reducer
-const initialState = { playerModalOpen: false };
+const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SHOW_MODAL: {
+      console.log("hit palyer reducer");
+    }
     case LOAD_INITIAL_PLAYERS: {
       console.log("reducer initial reduce", action.payload);
       return {

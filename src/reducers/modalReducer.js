@@ -9,7 +9,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SHOW_MODAL: {
-      console.log("modal reducer showmodal", action.payload);
+      console.log("modal reducer showmodal", action);
       return {
         ...state,
         modalType: action.modalType,
@@ -20,7 +20,6 @@ export default (state = initialState, action) => {
     case HIDE_MODAL: {
       console.log("modal reducer hidemodal");
       return {
-        ...state,
         ...initialState
       };
     }
