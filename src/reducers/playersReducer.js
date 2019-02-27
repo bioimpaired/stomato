@@ -4,9 +4,6 @@ import {
   REMOVE_PLAYER
 } from "../actions/playerActions";
 
-import { SHOW_MODAL, HIDE_MODAL } from "../actions/modalActions";
-
-// modal should be in another reducer
 const initialState = {};
 
 export default (state = initialState, action) => {

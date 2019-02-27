@@ -48,26 +48,21 @@ class App extends Component {
 
   render() {
     console.log("props", this.props);
-    const { mainState, addPlayer, removePlayer } = this.props;
+    const { addPlayer, removePlayer } = this.props;
     return (
       <Layout>
-        <MatchUp
-          // allPlayers={mainState.allPlayers}
-          addPlayer={addPlayer}
-          removePlayer={removePlayer}
-        />
+        <MatchUp addPlayer={addPlayer} removePlayer={removePlayer} />
       </Layout>
     );
   }
 }
 
 export default connect(
-  state => ({
-    mainState: {
-      allPlayers: state.players.allPlayers,
-      stateHere: state
-    }
-  }),
+  // state => ({
+  //     allPlayers: state.players.allPlayers,
+  //     stateHere: state
+  // }),
+  null,
   dispatch => ({
     addPlayer: formState => dispatch(addPlayer(formState)),
     loadInitialPlayers: allPlayers => dispatch(loadInitialPlayers(allPlayers)),

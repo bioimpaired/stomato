@@ -1,6 +1,6 @@
 export const SHOW_MODAL = "SHOW_MODAL";
 export const HIDE_MODAL = "HIDE_MODAL";
-export const ADD_PLAYER_MODAL_TYPE = "ADD_PLAYER_MODAL_TYPE";
+export const ADD_MODAL_TYPE = "ADD_MODAL_TYPE";
 
 export const showModal = (modalType, modalProps) => {
   console.log("action showModal", modalType, modalProps);

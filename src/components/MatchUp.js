@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { showModal } from "../actions/modalActions";
+import { showModal, ADD_MODAL_TYPE } from "../actions/modalActions";
 
 import { Row, Col, Button } from "reactstrap";
 
@@ -16,7 +16,7 @@ const MatchUp = ({ allPlayers, removePlayer, showModal, stateHere }) => {
   const handleAddNewPlayerStatLine = e => {
     e.preventDefault();
     console.log("toggling");
-    showModal("addplayertype", {});
+    showModal(ADD_MODAL_TYPE, {});
   };
 
   console.log("matchup", stateHere);
