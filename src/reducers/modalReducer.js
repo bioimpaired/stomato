@@ -2,7 +2,18 @@ import { SHOW_MODAL, HIDE_MODAL } from "../actions/modalActions";
 
 const initialState = {
   modalType: null,
-  modalProps: {},
+  modalProps: {
+    name: "",
+    fg: "",
+    ft: "",
+    threes: "",
+    pts: "",
+    reb: "",
+    ast: "",
+    st: "",
+    blk: "",
+    to: ""
+  },
   isOpen: false
 };
 
@@ -12,7 +23,7 @@ export default (state = initialState, action) => {
       console.log("modal reducer showmodal", action);
       return {
         modalType: action.modalType,
-        modalProps: action.modalProps,
+        modalProps: { ...initialState.modalProps, ...action.modalProps },
         isOpen: true
       };
     }
