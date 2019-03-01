@@ -18,6 +18,7 @@ const generateRandomNum = () =>
     max: 50
   });
 
+// players should have ids
 export const generatePlayer = () => ({
   name: faker.name.firstName(),
   fg: generateRandomNum(),

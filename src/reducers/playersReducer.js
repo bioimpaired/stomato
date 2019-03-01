@@ -1,7 +1,8 @@
 import {
   ADD_PLAYER,
   LOAD_INITIAL_PLAYERS,
-  REMOVE_PLAYER
+  REMOVE_PLAYER,
+  UPDATE_PLAYER
 } from "../actions/playerActions";
 
 const initialState = {};
@@ -28,6 +29,17 @@ export default (state = initialState, action) => {
       return {
         ...state,
         allPlayers: state.allPlayers
+      };
+    }
+    case UPDATE_PLAYER: {
+      console.log("reducer update player", action);
+      const allPlayersWithUpdatedPlayer = state.allPlayers.map(
+        (player, index) =>
+          action.playerIndex === index ? action.payload : player
+      );
+      return {
+        ...state,
+        allPlayers: allPlayersWithUpdatedPlayer
       };
     }
     default:

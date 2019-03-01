@@ -16,7 +16,10 @@ export default ({
 
   return (
     <Row className="pt-2">
-      <Col className="bg-light" onClick={handleUpdatePlayerStatLine}>
+      <Col
+        className="bg-light"
+        onClick={e => handleUpdatePlayerStatLine(e, index)}
+      >
         {playerStatLine.name}
       </Col>
       <Col>{playerStatLine.fg}</Col>

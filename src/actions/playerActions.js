@@ -28,10 +28,11 @@ export const removePlayer = index => {
   };
 };
 
-export const updatePlayer = index => {
-  console.log("action update player", index);
+export const updatePlayer = (index, playerStats) => {
+  console.log("action update player", index, playerStats);
   return {
     type: UPDATE_PLAYER,
-    payload: index
+    playerIndex: index,
+    payload: playerStats
   };
 };

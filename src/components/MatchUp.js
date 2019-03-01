@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { showModal, ADD_MODAL_TYPE } from "../actions/modalActions";
+import {
+  showModal,
+  ADD_MODAL_TYPE,
+  UPDATE_MODAL_TYPE
+} from "../actions/modalActions";
 
 import { Row, Col, Button } from "reactstrap";
 
@@ -11,6 +15,10 @@ import PlayerModal from "./Modal/PlayerModal";
 const MatchUp = ({ allPlayers, removePlayer, showModal, stateHere }) => {
   const handleUpdatePlayerStatLine = (e, playerIndex) => {
     e.preventDefault();
+    console.log("open update modal", playerIndex, allPlayers[playerIndex]);
+    const currentPlayerStat = allPlayers[playerIndex];
+
+    showModal(UPDATE_MODAL_TYPE, currentPlayerStat);
   };
 
   const handleAddNewPlayerStatLine = e => {

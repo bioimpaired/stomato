@@ -14,6 +14,7 @@ const initialState = {
     blk: "",
     to: ""
   },
+  updatePlayerIndex: null,
   isOpen: false
 };
 
@@ -24,7 +25,9 @@ export default (state = initialState, action) => {
       return {
         modalType: action.modalType,
         modalProps: { ...initialState.modalProps, ...action.modalProps },
-        isOpen: true
+        isOpen: true,
+        // fi this
+        updatePlayerIndex: 1
       };
     }
     case HIDE_MODAL: {
