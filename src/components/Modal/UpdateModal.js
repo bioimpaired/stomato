@@ -19,7 +19,11 @@ import {
 const UpdateModal = ({ isOpen, modalProps, updatePlayer, hideModal }) => {
   const allCats = Object.keys(modalProps);
 
+  // so option for uuid doesnt show up on modal
+  const modalInputs = allCats.filter(cat => cat != "uuid");
+
   const [formState, setFormState] = useState(modalProps);
+  console.log("update modal", modalProps);
 
   const handleInput = e => {
     e.preventDefault();
@@ -27,10 +31,10 @@ const UpdateModal = ({ isOpen, modalProps, updatePlayer, hideModal }) => {
   };
 
   // get index from redux
-  const handleUpdatePlayer = (e, index) => {
+  const handleUpdatePlayer = e => {
     e.preventDefault();
-    updatePlayer(index, formState);
-    // setFormState(initialFormState);
+    console.log("handle update", formState);
+    updatePlayer(formState);
     hideModal();
   };
 
@@ -44,7 +48,7 @@ const UpdateModal = ({ isOpen, modalProps, updatePlayer, hideModal }) => {
       <ModalHeader toggle={closeAndResetModal}>Update Player</ModalHeader>
       <ModalBody>
         <Form>
-          {allCats.map((cat, index) => (
+          {modalInputs.map((cat, index) => (
             <InputLine
               key={index}
               inputName={cat}
@@ -72,8 +76,7 @@ export default connect(
     isOpen: state.modal.isOpen
   }),
   dispatch => ({
-    updatePlayer: (index, playerStats) =>
-      dispatch(updatePlayer(index, playerStats)),
+    updatePlayer: playerStats => dispatch(updatePlayer(playerStats)),
     hideModal: () => dispatch(hideModal())
   })
 )(UpdateModal);

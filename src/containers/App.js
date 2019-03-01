@@ -18,8 +18,11 @@ const generateRandomNum = () =>
     max: 50
   });
 
+export const generateRandomUUID = length => faker.random.alphaNumeric(length);
+
 // players should have ids
 export const generatePlayer = () => ({
+  uuid: generateRandomUUID(8),
   name: faker.name.firstName(),
   fg: generateRandomNum(),
   ft: generateRandomNum(),

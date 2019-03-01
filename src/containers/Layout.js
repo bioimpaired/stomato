@@ -16,6 +16,7 @@ export class Layout extends Component {
       <div>
         <Navbar color="dark" expand="sm">
           <Container>
+            {/* clean routes */}
             <NavbarBrand href="/">Stomato</NavbarBrand>
             <Nav className="ml-auto">
               <NavItem>

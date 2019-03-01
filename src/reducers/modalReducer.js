@@ -3,6 +3,7 @@ import { SHOW_MODAL, HIDE_MODAL } from "../actions/modalActions";
 const initialState = {
   modalType: null,
   modalProps: {
+    uuid: "",
     name: "",
     fg: "",
     ft: "",

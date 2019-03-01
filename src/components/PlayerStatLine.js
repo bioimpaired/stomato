@@ -18,7 +18,7 @@ export default ({
     <Row className="pt-2">
       <Col
         className="bg-light"
-        onClick={e => handleUpdatePlayerStatLine(e, index)}
+        onClick={e => handleUpdatePlayerStatLine(e, playerStatLine.uuid)}
       >
         {playerStatLine.name}
       </Col>

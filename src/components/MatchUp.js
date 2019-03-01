@@ -13,11 +13,10 @@ import PlayerStatLine from "./PlayerStatLine";
 import PlayerModal from "./Modal/PlayerModal";
 
 const MatchUp = ({ allPlayers, removePlayer, showModal, stateHere }) => {
-  const handleUpdatePlayerStatLine = (e, playerIndex) => {
+  const handleUpdatePlayerStatLine = (e, uuid) => {
     e.preventDefault();
-    console.log("open update modal", playerIndex, allPlayers[playerIndex]);
-    const currentPlayerStat = allPlayers[playerIndex];
-
+    const currentPlayerStat = allPlayers.find(player => player.uuid === uuid);
+    console.log("open update modal", currentPlayerStat);
     showModal(UPDATE_MODAL_TYPE, currentPlayerStat);
   };
 
@@ -57,9 +56,10 @@ const MatchUp = ({ allPlayers, removePlayer, showModal, stateHere }) => {
             <PlayerStatLine
               playerStatLine={playerStatLine}
               removePlayer={removePlayer}
-              index={index}
               key={index}
               handleUpdatePlayerStatLine={handleUpdatePlayerStatLine}
+              // remove after fixing delete
+              index={index}
             />
           );
         })}

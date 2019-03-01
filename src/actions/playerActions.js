@@ -15,11 +15,11 @@ export const addPlayer = formState => {
   console.log("action adding player");
   return {
     type: ADD_PLAYER,
-    // generates player obj
     payload: formState
   };
 };
 
+// uses indexing of array and not uuid should change later
 export const removePlayer = index => {
   console.log("action adding player", index);
   return {
@@ -28,11 +28,10 @@ export const removePlayer = index => {
   };
 };
 
-export const updatePlayer = (index, playerStats) => {
-  console.log("action update player", index, playerStats);
+export const updatePlayer = playerStats => {
+  console.log("action update player", playerStats);
   return {
     type: UPDATE_PLAYER,
-    playerIndex: index,
     payload: playerStats
   };
 };

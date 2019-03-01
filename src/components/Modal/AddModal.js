@@ -6,6 +6,8 @@ import { hideModal } from "../../actions/modalActions";
 
 import InputLine from "./InputLine";
 
+import { generateRandomUUID } from "../../containers/App";
+
 import {
   Button,
   Modal,
@@ -17,9 +19,16 @@ import {
 
 // rename modal props to initalformstate
 const AddModal = ({ isOpen, modalProps, addPlayer, hideModal }) => {
-  const allCats = Object.keys(modalProps);
+  const newPlayerObjectWithUUID = {
+    ...modalProps,
+    uuid: generateRandomUUID(8)
+  };
 
-  const [formState, setFormState] = useState(modalProps);
+  const allCats = Object.keys(modalProps);
+  // so option for uuid doesnt show up on modal
+  const modalInputs = allCats.filter(cat => cat != "uuid");
+
+  const [formState, setFormState] = useState(newPlayerObjectWithUUID);
 
   const handleInput = e => {
     e.preventDefault();
@@ -29,7 +38,6 @@ const AddModal = ({ isOpen, modalProps, addPlayer, hideModal }) => {
   const handleAddPlayer = e => {
     e.preventDefault();
     addPlayer(formState);
-    // setFormState(initialFormState);
     hideModal();
   };
 
@@ -43,7 +51,7 @@ const AddModal = ({ isOpen, modalProps, addPlayer, hideModal }) => {
       <ModalHeader toggle={closeAndResetModal}>Add Player</ModalHeader>
       <ModalBody>
         <Form>
-          {allCats.map((cat, index) => (
+          {modalInputs.map((cat, index) => (
             <InputLine
               key={index}
               inputName={cat}

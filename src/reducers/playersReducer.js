@@ -33,10 +33,10 @@ export default (state = initialState, action) => {
     }
     case UPDATE_PLAYER: {
       console.log("reducer update player", action);
-      const allPlayersWithUpdatedPlayer = state.allPlayers.map(
-        (player, index) =>
-          action.playerIndex === index ? action.payload : player
+      const allPlayersWithUpdatedPlayer = state.allPlayers.map(player =>
+        player.uuid === action.payload.uuid ? action.payload : player
       );
+      console.log("all updated?", allPlayersWithUpdatedPlayer);
       return {
         ...state,
         allPlayers: allPlayersWithUpdatedPlayer
