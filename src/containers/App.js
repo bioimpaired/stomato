@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import MatchUp from "../components/MatchUp";
 import { Layout } from "./Layout";
+import Router from "../routes/allRoutes";
 
 import {
   addPlayer,
@@ -55,7 +55,7 @@ class App extends Component {
     const { addPlayer, removePlayer } = this.props;
     return (
       <Layout>
-        <MatchUp addPlayer={addPlayer} removePlayer={removePlayer} />
+        <Router />
       </Layout>
     );
   }
