@@ -42,13 +42,13 @@ const generateSeedPlayers = amount => {
 };
 
 class App extends Component {
-  componentWillMount() {
-    // load initial players
-    const { loadInitialPlayers } = this.props;
-    const allSeedPlayers = generateSeedPlayers(4);
-    console.log("loading initial players app", allSeedPlayers);
-    loadInitialPlayers(allSeedPlayers);
-  }
+  // componentWillMount() {
+  //   // load initial players
+  //   const { loadInitialPlayers } = this.props;
+  //   const allSeedPlayers = generateSeedPlayers(4);
+  //   console.log("loading initial players app", allSeedPlayers);
+  //   loadInitialPlayers(allSeedPlayers);
+  // }
 
   render() {
     console.log("props", this.props);
