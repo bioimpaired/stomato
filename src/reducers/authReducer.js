@@ -1,11 +1,13 @@
 import { LOGIN } from "../actions/authActions";
 
-const initialState = {};
+const initialState = {
+  isAuthenticated: false
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "something": {
-      return {};
+    case LOGIN: {
+      return { isAuthenticated: true };
     }
     default:
       return state;
