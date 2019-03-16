@@ -9,6 +9,8 @@ import {
   removePlayer
 } from "../actions/playerActions";
 
+import { logoutCurrentUser } from "../actions/authActions";
+
 import { Container, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
 
 import faker from "faker";
@@ -55,6 +57,14 @@ class App extends Component {
   render() {
     console.log("props", this.props);
     const { addPlayer, removePlayer, isAuthenticated } = this.props;
+
+    const handleLogout = e => {
+      const { logoutCurrentUser } = this.props;
+      e.preventDefault();
+      console.log("logout");
+      logoutCurrentUser();
+    };
+
     return (
       <React.Fragment>
         {/* maybe put navbar back into layout */}
@@ -81,7 +91,7 @@ class App extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <button>logout</button>
+                    <button onClick={handleLogout}>logout</button>
                   </NavItem>
                 </React.Fragment>
               ) : (
@@ -126,7 +136,8 @@ export default withRouter(
       addPlayer: formState => dispatch(addPlayer(formState)),
       loadInitialPlayers: allPlayers =>
         dispatch(loadInitialPlayers(allPlayers)),
-      removePlayer: index => dispatch(removePlayer(index))
+      removePlayer: index => dispatch(removePlayer(index)),
+      logoutCurrentUser: () => dispatch(logoutCurrentUser())
     })
   )(App)
 );
