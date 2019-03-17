@@ -6,6 +6,7 @@ import {
   ADD_MODAL_TYPE,
   UPDATE_MODAL_TYPE
 } from "../actions/modalActions";
+import { removePlayer } from "../actions/playerActions";
 
 import { Row, Col, Button } from "reactstrap";
 
@@ -75,6 +76,7 @@ export default connect(
   }),
   dispatch => ({
     showModal: (modalType, modalProps) =>
-      dispatch(showModal(modalType, modalProps))
+      dispatch(showModal(modalType, modalProps)),
+    removePlayer: index => dispatch(removePlayer(index))
   })
 )(MatchUp);

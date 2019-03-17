@@ -3,11 +3,7 @@ import { connect } from "react-redux";
 import Router from "../routes/allRoutes";
 import { withRouter, Link } from "react-router-dom";
 
-import {
-  addPlayer,
-  loadInitialPlayers,
-  removePlayer
-} from "../actions/playerActions";
+import { loadInitialPlayers } from "../actions/playerActions";
 
 import { logoutCurrentUser } from "../actions/authActions";
 
@@ -133,10 +129,8 @@ export default withRouter(
       isAuthenticated: state.auth.isAuthenticated
     }),
     dispatch => ({
-      addPlayer: formState => dispatch(addPlayer(formState)),
       loadInitialPlayers: allPlayers =>
         dispatch(loadInitialPlayers(allPlayers)),
-      removePlayer: index => dispatch(removePlayer(index)),
       logoutCurrentUser: () => dispatch(logoutCurrentUser())
     })
   )(App)

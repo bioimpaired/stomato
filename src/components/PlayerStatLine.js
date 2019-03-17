@@ -2,7 +2,7 @@ import React from "react";
 
 import { Row, Col, Button } from "reactstrap";
 
-export default ({
+const PlayerStatLine = ({
   index,
   removePlayer,
   playerStatLine,
@@ -37,3 +37,5 @@ export default ({
     </Row>
   );
 };
+
+export default PlayerStatLine;
